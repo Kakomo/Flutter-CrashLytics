@@ -1,13 +1,40 @@
+import 'package:bytebank/components/localization.dart';
+import 'package:bytebank/components/localization_lazy.dart';
 import 'package:bytebank/screens/contacts_list.dart';
+import 'package:bytebank/screens/name.dart';
 import 'package:bytebank/screens/transactions_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Dashboard extends StatelessWidget {
+class DashboardContainer extends StatelessWidget {
+  final String language;
+
+  DashboardContainer(this.language);
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => NameCubit("Kako"),
+      child: I18NLoadingContainer(
+          (messages) => DashboardView(messages), language
+      ),
+    );
+  }
+}
+
+
+class DashboardView extends StatelessWidget {
+  final I18NMessages _messages;
+  
+  DashboardView(this._messages);
+
+  @override
+  Widget build(BuildContext context) {
+    final i18n = DashboardViewi18N(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dashboard"),
+        title: BlocBuilder<NameCubit, String>(
+          builder: (context, state) => Text("Welcome $state"),
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -23,17 +50,24 @@ class Dashboard extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               children: [
                 _FeatureItem(
-                  'Transfer',
+                  _messages.get("transfer"),
                   Icons.monetization_on,
                   onClick: () {
                     _showContactsList(context);
                   },
                 ),
                 _FeatureItem(
-                  'Transaction Feed',
+                  _messages.get("transaction_feed"),
                   Icons.description,
                   onClick: () {
                     _showTransactionsList(context);
+                  },
+                ),
+                _FeatureItem(
+                  _messages.get("change_name"),
+                  Icons.person_outline,
+                  onClick: () {
+                    _showChangeName(context);
                   },
                 ),
               ],
@@ -52,7 +86,15 @@ class Dashboard extends StatelessWidget {
 }
 void _showContactsList(BuildContext context){
   Navigator.of(context).push(MaterialPageRoute(
-    builder: (context) => ContactsList(),
+    builder: (context) => ContactsListContainer(),
+  ));
+}
+void _showChangeName(BuildContext contextBloc){
+  Navigator.of(contextBloc).push(MaterialPageRoute(
+    builder: (context) => BlocProvider.value(
+      value: BlocProvider.of<NameCubit>(contextBloc),
+      child: NameContainer(),
+    ),
   ));
 }
 

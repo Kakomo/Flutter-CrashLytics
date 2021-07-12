@@ -1,0 +1,39 @@
+build.gradle{
+  "project_info": {
+    "project_number": "903901334289",
+    "project_id": "bytebank-1aa09",
+    "storage_bucket": "bytebank-1aa09.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903901334289:android:73fd1a9d3059b1c019dab0",
+        "android_client_info": {
+          "package_name": "com.alura.bytebank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "903901334289-lmusmoqcptiu7lv8d99q96kqj5o0p29t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsbzUaL5d37QlJEmhm7zs4cGfqnkpeAlM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "903901334289-lmusmoqcptiu7lv8d99q96kqj5o0p29t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
