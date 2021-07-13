@@ -3,6 +3,7 @@ import 'package:bytebank/components/localization_lazy.dart';
 import 'package:bytebank/screens/contacts_list.dart';
 import 'package:bytebank/screens/name.dart';
 import 'package:bytebank/screens/transactions_list.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

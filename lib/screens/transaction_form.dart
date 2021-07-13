@@ -7,6 +7,7 @@ import 'package:bytebank/http/webclient.dart';
 import 'package:bytebank/http/webclients/transactions_webclient.dart';
 import 'package:bytebank/model/contact.dart';
 import 'package:bytebank/model/transactions.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
@@ -59,10 +60,19 @@ class TransactionFormCubit extends Cubit<TransactionFormState>{
 
     final Transaction transaction =
     await TransactionsWebClient().save(transactionCreated, password).catchError((error) {
+
+      FirebaseCrashlytics.instance.recordError(error.message, null);
+
       _showFailureMessage(context,message: error.message);
     }, test: (error) => error is HttpException).catchError((error){
+
+      FirebaseCrashlytics.instance.recordError(error.message, null);
+
       _showFailureMessage(context,message: 'I could not talk to the server');
     },test: (error) => error is TimeoutException).catchError((error){
+
+      FirebaseCrashlytics.instance.recordError(error.message, null);
+
       _showFailureMessage(context);
     },test: (error) => error is Exception);
 
