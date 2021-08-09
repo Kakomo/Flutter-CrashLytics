@@ -61,17 +61,32 @@ class TransactionFormCubit extends Cubit<TransactionFormState>{
     final Transaction transaction =
     await TransactionsWebClient().save(transactionCreated, password).catchError((error) {
 
-      FirebaseCrashlytics.instance.recordError(error.message, null);
+      if(FirebaseCrashlytics.instance.isCrashlyticsCollectionEnabled){
+        FirebaseCrashlytics.instance.recordError(error, null);
+        FirebaseCrashlytics.instance.setCustomKey('Exception',error.toString());
+        FirebaseCrashlytics.instance.setCustomKey('Status Code',error.statusCode);
+        FirebaseCrashlytics.instance.setCustomKey('HTTP_Body',transactionCreated.toString());
+      }
 
       _showFailureMessage(context,message: error.message);
     }, test: (error) => error is HttpException).catchError((error){
 
-      FirebaseCrashlytics.instance.recordError(error.message, null);
+      if(FirebaseCrashlytics.instance.isCrashlyticsCollectionEnabled){
+        FirebaseCrashlytics.instance.recordError(error, null);
+        FirebaseCrashlytics.instance.setCustomKey('Exception',error.toString());
+        FirebaseCrashlytics.instance.setCustomKey('Status Code',error.statusCode);
+        FirebaseCrashlytics.instance.setCustomKey('HTTP_Body',transactionCreated.toString());
+      }
 
       _showFailureMessage(context,message: 'I could not talk to the server');
     },test: (error) => error is TimeoutException).catchError((error){
 
-      FirebaseCrashlytics.instance.recordError(error.message, null);
+      if(FirebaseCrashlytics.instance.isCrashlyticsCollectionEnabled){
+        FirebaseCrashlytics.instance.recordError(error, null);
+        FirebaseCrashlytics.instance.setCustomKey('Exception',error.toString());
+        FirebaseCrashlytics.instance.setCustomKey('Status Code',error.statusCode);
+        FirebaseCrashlytics.instance.setCustomKey('HTTP_Body',transactionCreated.toString());
+      }
 
       _showFailureMessage(context);
     },test: (error) => error is Exception);
