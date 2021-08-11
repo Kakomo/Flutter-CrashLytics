@@ -1,4 +1,4 @@
-![Thumbnail GitHub](inicial)
+![Thumbnail GitHub](https://raw.githubusercontent.com/Kakomo/Flutter-CrashLytics/master/Readme%20Template.png)
 
 # Bytebank
 
