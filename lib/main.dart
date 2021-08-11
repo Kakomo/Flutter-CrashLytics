@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bytebank/screens/language_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -10,19 +12,19 @@ import 'components/theme.dart';
 
 
 void main() async {
+    runZonedGuarded<Future<void>>(() async {
+      WidgetsFlutterBinding.ensureInitialized();
+      await Firebase.initializeApp();
+      if(kDebugMode){
+        await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
+      }else{
+        await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+        FirebaseCrashlytics.instance.setUserIdentifier('alura123');
+        FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+      }
+      runApp(ByteBank());
+    }, (error, stack) => FirebaseCrashlytics.instance.recordError(error, stack));
 
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp();
-  if(kDebugMode){
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
-  }else{
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
-    FirebaseCrashlytics.instance.setUserIdentifier('alura123');
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-  }
-
-  runApp(ByteBank());
 }
 
 class LogObserver extends BlocObserver{
