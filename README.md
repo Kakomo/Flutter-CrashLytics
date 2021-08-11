@@ -1,16 +1,35 @@
-# bytebank
+![Thumbnail GitHub](inicial)
 
-My first bytebank app
+# Bytebank
 
-## Getting Started
+The Bytebank App is the simulation of a bank application, you are able to create contacts, transfer money, look at old transactions, change the user name, using http communication and persistence.
 
-This project is a starting point for a Flutter application.
+## 🔨 Project Features
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![](gifaqui)
+
+## ✔️ Techniques and Technologies
+
+**Take a closer look at what you will use**:
+
+
+
+## 📁 Initial Project
+
+You can access the [initial project here](git inciial) or [download it](linkde download)
+
+## 🛠️ Instructions 
+
+After downloading the project, you can open it with Android Studio. To do this, on the launcher screen click on:
+
+- **Open an Existing Project** (or similar option)
+- Browse the location where the project is and select it (If the project is downloaded via zip, it is necessary to extract it before searching for it)
+- Finally click OK
+
+Android Studio must perform some Gradle tasks to configure the project, wait until it finishes. When finishing the tasks, you can run the App
+
+## 📚 Other Informations
+
+
