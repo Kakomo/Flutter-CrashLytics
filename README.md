@@ -8,7 +8,7 @@ The Bytebank App is the simulation of a bank application, you are able to create
 
 
 
-![](gifaqui)
+![](https://raw.githubusercontent.com/Kakomo/Flutter-CrashLytics/master/Crashlytics.gif)
 
 ## ✔️ Techniques and Technologies
 
